@@ -3,4 +3,4 @@ services:
   frontend:
     image: winnkyaw/fronend-cicd:latest
     ports:
-      - "8080:3000"
+      - "3000:3000"

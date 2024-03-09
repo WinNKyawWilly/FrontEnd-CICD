@@ -19,6 +19,8 @@ jobs:
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Use Node.js 20.x
         uses: actions/setup-node@v3
@@ -37,7 +39,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          context: .
           push: true
           tags: winnkyaw/frontend-cicd:latest
       - name: Copy file via ssh
@@ -73,3 +74,4 @@ jobs:
             docker-compose down
             docker-compose pull
             docker-compose up
+            rm -rf /home/ubuntu/frontend-cicd/docker-compose.yml

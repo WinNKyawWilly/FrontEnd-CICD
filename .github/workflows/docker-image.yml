@@ -38,7 +38,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ../dockerfile
           push: true
           tags: winnkyaw/frontend-cicd:latest
       - name: Copy file via ssh

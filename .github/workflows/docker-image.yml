@@ -48,7 +48,17 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           source: "docker-compose.yml"
-          target: "/home/node/app"
+          target: "/home/ubuntu/frontend-cicd"
+
+      - name: Check Root Directory
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            ls -la /home/ubuntu
 
       - name: Docker Compose
         uses: appleboy/ssh-action@v0.1.10
@@ -63,4 +73,4 @@ jobs:
             docker-compose down
             docker-compose pull
             docker-compose up -d
-            rm -rf /home/node/app
+            rm -rf /home/ubuntu/frontend-cicd
